@@ -1,8 +1,7 @@
 import React from 'react';
-import {Navbar, Button, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Link} from 'react-router-dom';
-import Logo from'../logo.svg';
+import Logo from '../logo.svg';
 
 const NavBar = () => 
   <div>
