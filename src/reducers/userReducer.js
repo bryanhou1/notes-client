@@ -1,4 +1,4 @@
-const initialState = {user: {}, isLoggingIn: false, errors: {}}
+const initialState = {user: {}, isLoggingIn: false}
 
 
 export default function userReducer(state = initialState, action){      
@@ -6,10 +6,11 @@ export default function userReducer(state = initialState, action){
     case "LOGIN_START":
     	return Object.assign({}, state, {isLoggingIn: true})
     case "LOGIN_FAILURE":
-    	return Object.assign({}, state, {errors: "email or password incorrect." })
+    	return Object.assign({}, state, {isLoggingIn: false})
     case "LOGIN_SUCCESS":
-    	return Object.assign({}, state, action.user)
+    	return Object.assign({}, state, {user: action.user}, {isLoggingIn: false})
     default:
       return state;
   }
 }
+
