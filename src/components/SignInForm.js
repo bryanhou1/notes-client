@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/index'; //refractor
-// import ErrorMessages from './ErrorMessages';
+import Messages from './Messages';
 
 
 class SignInForm extends Component {
@@ -29,15 +29,13 @@ class SignInForm extends Component {
     if (email && password) {
       this.props.login({email: email, password: password});
     }
-
-    debugger;
   }
 
   render() {
 
     return (
       <div>
-        {this.props.alert.messages.text}
+        <Messages messages={this.props.alert.messages} />
         <form onSubmit={e => this.handleSubmit(e)}>
           <div>
             <label> Email : </label>
