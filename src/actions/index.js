@@ -12,12 +12,16 @@
 // }
 import axios from 'axios';
 
+const SUCCESS = "success";
+const ERROR = "error";
+
+
 export const login = (user_data) => {
 	return function action(dispatch) {
 		dispatch({type: "LOGIN_START"})
 
 		const request = axios.post('http://localhost:3000/api/user_token', {"auth": {
-	    email: user_data.username,
+	    email: user_data.email,
 	    password: user_data.password,
 	  }});
 
@@ -25,11 +29,12 @@ export const login = (user_data) => {
 		return request.then(
 			response => {
 				dispatch({type: "LOGIN_SUCCESS", user: response.data})
+				dispatch({type: "ALERT_SUCCESS", messages: {style: SUCCESS, text: "successfully logged in"}})
 				// dispatch({type: "FETCH_CURRENT_USER"})
-				console.log(response)
 			},
 			err => {
 				dispatch({type: "LOGIN_FAILURE"})
+				dispatch({type: "ALERT_SUCCESS", messages: {style: ERROR, text: "email or password incorrect"}})
 			},
 		)
 
@@ -38,7 +43,14 @@ export const login = (user_data) => {
 }
 
 export const logout = () =>  {
-    return {
+    return (dispatch) => {
+    	dispatch({
         type: "LOGOUT",
+    	})
+    	dispatch({
+    		type: "ALERT_SUCCESS",
+    		messages: ["successfully logged out"],
+    	})
+
     }
 }

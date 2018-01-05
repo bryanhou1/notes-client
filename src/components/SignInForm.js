@@ -34,9 +34,10 @@ class SignInForm extends Component {
   }
 
   render() {
+
     return (
       <div>
-        {this.props.alert.messages}
+        {this.props.alert.messages.text}
         <form onSubmit={e => this.handleSubmit(e)}>
           <div>
             <label> Email : </label>
