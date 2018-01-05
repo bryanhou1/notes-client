@@ -25,7 +25,6 @@ class SignInForm extends Component {
     const {email, password} = this.state;
     if (email && password) {
       this.props.login({email: email, password: password});
-
     }
   }
 
@@ -34,11 +33,11 @@ class SignInForm extends Component {
       <form onSubmit={e => this.handleSubmit(e)}>
         <div>
           <label> Email : </label>
-          <input id="login-email" type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+          <input id="login-email" type="text" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
         </div>
         <div>
           <label name="password"> Password : </label>
-          <input id="login-password" type="password" name="password" value={this.state.password} onChange={this.handleChange}/>
+          <input id="login-password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)}/>
         </div>
         <div>
           <button type="submit">Log in</button>
