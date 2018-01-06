@@ -9,14 +9,14 @@ class Messages extends Component {
   	if (text) {
       if (style === "success") {
         return (
-          <div class="alert alert-success">
+          <div className="alert alert-success">
             {text}
           </div>
         )
       }
       if (style === "error") {
         return (
-          <div class="alert alert-danger">
+          <div className="alert alert-danger">
             {text}
           </div>
         )
