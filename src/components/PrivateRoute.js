@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import isLoggedIn from '../helpers/isLoggedIn';
+// import isLoggedIn from '../helpers/isLoggedIn'; // doesn't work
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
   <Route {...rest} render={props => (
-    isLoggedIn ? (
+    localStorage.token ? (
       <Component {...props}/>
     ) : (
       <Redirect to={{
-        pathname: '/login',
+        pathname: '/sign_in',
         state: { from: props.location }
       }}/>
     )
   )}/>
 )
+}
 
 export default PrivateRoute;

@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import './App.css';
 import NavBar from './NavBar';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
-
+import Home from './Home';
+import PrivateRoute from './PrivateRoute';
+import isLoggedIn from '../helpers/isLoggedIn'
 class App extends Component {
+
   render() {
     return (  
       <Router>
         <div>
           <NavBar />
           <div id="main-container">
-            <Route exact path="/" render={() => <h3>Welcome!</h3>} />
+            <PrivateRoute exact path="/" component={Home}/>
+
             <Route exact path="/sign_in" component={SignInForm} />
             <Route exact path="/sign_up" component={SignUpForm} />
           </div>
@@ -23,4 +27,3 @@ class App extends Component {
 }
 
 export default App;
-

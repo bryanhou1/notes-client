@@ -31,7 +31,7 @@ export const login = (user_data) => {
 				localStorage.setItem('token', response.data.jwt)
 				dispatch({type: "LOGIN_SUCCESS", user: response.data})
 				dispatch({type: "ALERT_SUCCESS", messages: {style: SUCCESS, text: "successfully logged in"}})
-				// dispatch({type: "FETCH_CURRENT_USER"})
+				return response.status;
 			},
 			err => {
 				dispatch({type: "LOGIN_FAILURE"})
