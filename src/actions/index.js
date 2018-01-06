@@ -28,6 +28,7 @@ export const login = (user_data) => {
 
 		return request.then(
 			response => {
+				localStorage.setItem('token', response.data.jwt)
 				dispatch({type: "LOGIN_SUCCESS", user: response.data})
 				dispatch({type: "ALERT_SUCCESS", messages: {style: SUCCESS, text: "successfully logged in"}})
 				// dispatch({type: "FETCH_CURRENT_USER"})
@@ -47,10 +48,7 @@ export const logout = () =>  {
     	dispatch({
         type: "LOGOUT",
     	})
-    	dispatch({
-    		type: "ALERT_SUCCESS",
-    		messages: ["successfully logged out"],
-    	})
+    	dispatch({type: "ALERT_SUCCESS", messages: {style: SUCCESS, text: "successfully logged out"}})
 
     }
 }
