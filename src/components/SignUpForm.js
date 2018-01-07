@@ -46,30 +46,34 @@ class SignUpForm extends Component {
       )
     } else {
       return (
-        <div>
-          <Messages messages={this.props.alert.messages} />
-          <form onSubmit={e => this.handleSubmit(e)}>
-            <div>
-              <label> Name : </label>
-              <input id="signup-name" type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
-            </div>
-            <div>
-              <label> Email : </label>
-              <input id="signup-email" type="text" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
-            </div>
-            <div>
-              <label name="password"> Password : </label>
-              <input id="signup-password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)}/>
-            </div>
-            <div>
-              <label> Username : </label>
-              <input id="signup-username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-            </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-4">
+              <Messages messages={this.props.alert.messages} />
+              <form onSubmit={e => this.handleSubmit(e)}>
+                <div className="form-group">
+                  <label> Name : </label>
+                  <input className="form-control" id="signup-name" type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
+                </div>
+                <div className="form-group">
+                  <label> Email : </label>
+                  <input className="form-control" id="signup-email" type="text" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
+                </div>
+                <div className="form-group">
+                  <label name="password"> Password : </label>
+                  <input className="form-control" id="signup-password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)}/>
+                </div>
+                <div className="form-group">
+                  <label> Username : </label>
+                  <input className="form-control" id="signup-username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+                </div>
 
-            <div>
-              <button type="submit">Register</button>
+                <div>
+                  <button type="submit" className="btn btn-default">Register</button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       );
     }

@@ -56,21 +56,27 @@ class SignInForm extends Component {
       )
     } else {
       return (
-        <div>
-          <Messages messages={this.props.alert.messages} />
-          <form onSubmit={e => this.handleSubmit(e)}>
-            <div>
-              <label> Email : </label>
-              <input id="login-email" type="text" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
+        <div className="container">
+          <div className="row">
+            <div className="col-4">
+              <div>
+                <Messages messages={this.props.alert.messages} />
+                <form onSubmit={e => this.handleSubmit(e)}>
+                  <div className="form-group">
+                    <label> Email : </label>
+                    <input id="login-email" className="form-control" type="text" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
+                  </div>
+                  <div className="form-group">
+                    <label name="password"> Password : </label>
+                    <input id="login-password" className="form-control" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)}/>
+                  </div>
+                  <div>
+                    <button type="submit" className="btn btn-default">Log in</button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <div>
-              <label name="password"> Password : </label>
-              <input id="login-password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)}/>
-            </div>
-            <div>
-              <button type="submit">Log in</button>
-            </div>
-          </form>
+          </div>
         </div>
       );
     }
