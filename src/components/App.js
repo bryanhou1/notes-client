@@ -6,7 +6,8 @@ import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 import Home from './Home';
 import PrivateRoute from './PrivateRoute';
-import isLoggedIn from '../helpers/isLoggedIn'
+import isLoggedIn from '../helpers/isLoggedIn';
+
 class App extends Component {
 
   render() {

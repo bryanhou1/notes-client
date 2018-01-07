@@ -20,7 +20,6 @@ class SignUpForm extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -29,7 +28,7 @@ class SignUpForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const {email, password, name, username} = this.state;
-
+    
     this.props.register({email: email, password: password, username: username, name: name}).then((status) => {
       this.setState({redirectToReferrer: (status === 201)}) 
     })
@@ -51,23 +50,23 @@ class SignUpForm extends Component {
           <form onSubmit={e => this.handleSubmit(e)}>
             <div>
               <label> Name : </label>
-              <input id="login-name" type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
+              <input id="signup-name" type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
             </div>
             <div>
               <label> Email : </label>
-              <input id="login-email" type="text" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
+              <input id="signup-email" type="text" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
             </div>
             <div>
               <label name="password"> Password : </label>
-              <input id="login-password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)}/>
+              <input id="signup-password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)}/>
             </div>
             <div>
               <label> Username : </label>
-              <input id="login-username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+              <input id="signup-username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
             </div>
 
             <div>
-              <button type="submit">Log in</button>
+              <button type="submit">Register</button>
             </div>
           </form>
         </div>

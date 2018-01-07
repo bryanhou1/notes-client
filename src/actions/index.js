@@ -34,12 +34,12 @@ export const login = (user_data) => {
 export const register = (user_data) => {
 	return function action(dispatch) {
 		dispatch({type: "REGISTER_START"})
-		const request = axios.post('http://localhost:3000/api/signup', {"user": {
+		const request = axios.post('http://localhost:3000/api/signup', {
 	    email: user_data.email,
 	    password: user_data.password,
       name: user_data.name,
       username: user_data.username,
-	  }});
+	  });
 
 
 		return request.then(
