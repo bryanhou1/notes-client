@@ -34,8 +34,12 @@ class SignUpForm extends Component {
     })
   }
 
+  componentDidMount() {
+    this.props.removeMessage();
+  }
+
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { from } = this.props.location.state || { from: { pathname: '/sign_in' } }
     const { redirectToReferrer } = this.state
 
     if (redirectToReferrer) {
@@ -43,7 +47,6 @@ class SignUpForm extends Component {
         <Redirect to={from}/>
       )
     } else {
-
       return (
         <div>
           <Messages messages={this.props.alert.messages} />

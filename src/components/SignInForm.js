@@ -24,6 +24,7 @@ class SignInForm extends Component {
     });
   };
 
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -35,6 +36,10 @@ class SignInForm extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.removeMessage();
+  }
+  
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state
@@ -63,11 +68,8 @@ class SignInForm extends Component {
         </div>
       );
     }
-
-
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {

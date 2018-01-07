@@ -44,16 +44,14 @@ export const register = (user_data) => {
 
 		return request.then(
 			response => {
-        debugger
-				// localStorage.setItem('token', response.data.jwt)
-				// dispatch({type: "REGISTER_SUCCESS", user: response.data})
-				// dispatch({type: "ALERT", messages: {style: SUCCESS, text: ["successfully generated user"]}})
-				return response;
+				// dispatch({type: "REGISTER_SUCCESS"})
+				dispatch({type: "ALERT", messages: {style: SUCCESS, text: ["successfully registered"]}});
+				return response.status;
 			},
 			err => {
 				// dispatch({type: "REGISTER_FAILURE"})
 				dispatch({type: "ALERT", messages: {style: ERROR, text: err.response.data.errors}})
-        return err
+        return err;
 			},
 		)
 
@@ -67,7 +65,15 @@ export const logout = () =>  {
     	dispatch({
         type: "LOGOUT",
     	})
-    	dispatch({type: "ALERT_SUCCESS", messages: {style: SUCCESS, text: "successfully logged out"}})
+    	dispatch({type: "ALERT", messages: {style: SUCCESS, text: "successfully logged out"}})
 
     }
+}
+
+export const removeMessage = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "CLEAR_ALERT"
+    })
+  }
 }
