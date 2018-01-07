@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+
+import PrivateRoute from './PrivateRoute';
+import * as isLoggedIn from '../helpers/isLoggedIn'; //
+import {connect} from 'react-redux';
+
+import {bindActionCreators} from 'redux';
+import * as actions from '../actions/index';
+
 import './App.css';
 import NavBar from './NavBar';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 import Home from './Home';
-import PrivateRoute from './PrivateRoute';
-import isLoggedIn from '../helpers/isLoggedIn';
 
 class App extends Component {
 
+  componentDidMount() {
+    this.props.getAuthStatus();
+  }
+
   render() {
-    return (  
+    return (
       <Router>
         <div>
           <NavBar />
@@ -27,4 +37,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(actions, dispatch);
+}
+//getAuthStatus();
+
+export default connect(null, mapDispatchToProps)(App);

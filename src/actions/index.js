@@ -77,3 +77,9 @@ export const removeMessage = () => {
     })
   }
 }
+
+export const getAuthStatus = () => {
+  return (dispatch) => {
+    dispatch({ type: "GET_AUTH_STATUS"});
+  }
+}
