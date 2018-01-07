@@ -7,7 +7,7 @@ class Messages extends Component {
 
     return (
       <ul>
-        {text.map((str) => <li>{str}</li>)}
+        {text.map((str, i) => <li key={i}>{str}</li>)}
       </ul>
     )
   }
