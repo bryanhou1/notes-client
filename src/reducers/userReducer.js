@@ -9,6 +9,8 @@ export default function userReducer(state = initialState, action){
     	return Object.assign({}, state, {isLoggingIn: false})
     case "LOGIN_SUCCESS":
     	return Object.assign({}, state, {user: action.user}, {isLoggingIn: false})
+    case "LOGOUT":
+      return initialState;
     default:
       return state;
   }

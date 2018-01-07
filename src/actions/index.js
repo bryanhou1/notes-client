@@ -65,8 +65,8 @@ export const logout = () =>  {
     	dispatch({
         type: "LOGOUT",
     	})
+      localStorage.removeItem("token");
     	dispatch({type: "ALERT", messages: {style: SUCCESS, text: "successfully logged out"}})
-
     }
 }
 
