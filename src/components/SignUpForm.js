@@ -29,12 +29,10 @@ class SignUpForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const {email, password, name, username} = this.state;
-    
-    if (username && email && name && password) {
-      this.props.register({email: email, password: password, username: username, name: name}).then((status) => {
-        this.setState({redirectToReferrer: (status === 201)}) 
-      })
-    }
+
+    this.props.register({email: email, password: password, username: username, name: name}).then((status) => {
+      this.setState({redirectToReferrer: (status === 201)}) 
+    })
   }
 
   render() {
