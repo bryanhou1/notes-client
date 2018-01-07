@@ -4,8 +4,6 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../actions/index'; //refractor
 import Messages from './Messages';
 import {Redirect} from 'react-router-dom';
-// import isLoggedIn from '../helpers/isLoggedIn'; //doesn't work 
-
 
 class SignUpForm extends Component {
   constructor(props) {

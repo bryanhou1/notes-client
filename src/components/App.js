@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
-import * as isLoggedIn from '../helpers/isLoggedIn'; //
 import {connect} from 'react-redux';
 
 import {bindActionCreators} from 'redux';

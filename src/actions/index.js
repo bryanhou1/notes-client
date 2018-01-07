@@ -4,6 +4,34 @@ const SUCCESS = "success";
 const ERROR = "error";
 
 
+const authHeader = (token) => {
+  return { 'Authorization': 'Bearer ' + token};
+}
+
+
+export const fetchUser = (token) => {
+  return function action(dispatch) {
+    const request = axios({
+      method: 'get',
+      url: 'http://localhost:3000/api/current_user',
+      
+      headers: authHeader(token),
+    })
+
+    return request.then(
+      response => {
+        dispatch({type: "FETCH_CURRENT_USER_SUCCESS", user: response.data})
+      },
+      err => {
+        // debugger;
+        // dispatch({type: "FETCH_FAILURE"})
+      }
+    )
+  }
+
+} 
+
+
 export const login = (user_data) => {
 	return function action(dispatch) {
 		dispatch({type: "LOGIN_START"})
@@ -26,8 +54,6 @@ export const login = (user_data) => {
 				dispatch({type: "ALERT", messages: {style: ERROR, text: ["email or password incorrect"]}})
 			},
 		)
-
-
 	}
 }
 
@@ -46,6 +72,7 @@ export const register = (user_data) => {
 			response => {
 				// dispatch({type: "REGISTER_SUCCESS"})
 				dispatch({type: "ALERT", messages: {style: SUCCESS, text: ["successfully registered"]}});
+
 				return response.status;
 			},
 			err => {
@@ -66,7 +93,7 @@ export const logout = () =>  {
         type: "LOGOUT",
     	})
       localStorage.removeItem("token");
-    	dispatch({type: "ALERT", messages: {style: SUCCESS, text: "successfully logged out"}})
+    	dispatch({type: "ALERT", messages: {style: SUCCESS, text: ["successfully logged out"]}})
     }
 }
 

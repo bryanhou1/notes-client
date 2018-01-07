@@ -27,17 +27,23 @@ class SignInForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     const {email, password} = this.state;
     if (email && password) {
       this.props.login({email: email, password: password}).then((status) => {
-        this.setState({redirectToReferrer: (status === 201)}) 
+        this.setState({redirectToReferrer: (status === 201)})
       })
     }
   }
 
   componentDidMount() {
     this.props.removeMessage();
+  }
+
+  componentWillUnmount() {
+    if (localStorage.token) {
+      this.props.fetchUser(localStorage.token)
+    }
+    
   }
   
   render() {
