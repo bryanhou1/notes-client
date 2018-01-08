@@ -51,7 +51,8 @@ export const login = (user_data) => {
 			},
 			err => {
 				dispatch({type: "LOGIN_FAILURE"})
-				dispatch({type: "ALERT", messages: {style: ERROR, text: ["email or password incorrect"]}})
+        const message = err.response ? "email or password incorrect" : "network error, please try again later";
+				dispatch({type: "ALERT", messages: {style: ERROR, text: [message]}})
 			},
 		)
 	}
@@ -110,3 +111,24 @@ export const getAuthStatus = () => {
     dispatch({ type: "GET_AUTH_STATUS"});
   }
 }
+
+export const fetchNotes = (token) => {
+  return function action(dispatch) {
+    const request = axios({
+      method: 'get',
+      url: 'http://localhost:3000/api/notes',
+      headers: authHeader(token),
+    })
+
+    return request.then(
+      response => {
+        dispatch({type: "FETCH_CURRENT_USER_NOTES_SUCCESS", notes: response.data})
+      },
+      err => {
+        // debugger;
+        // dispatch({type: "FETCH_FAILURE"})
+      }
+    )
+  }
+
+} 

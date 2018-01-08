@@ -5,15 +5,15 @@ import * as actions from '../actions/index';
 import './Home.css'
 
 class Home extends Component {
-	
+	componentDidMount() {
+    this.props.fetchNotes(localStorage.token);
+  }
+
 	render () {
 		return (
       <div className="container-fluid">
-        <div class="sidenav">
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Clients</a>
-          <a href="#">Contact</a>
+        <div className="sidenav">
+          
         </div>
 
         <div id="main">

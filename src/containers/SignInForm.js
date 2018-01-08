@@ -17,7 +17,7 @@ class SignInForm extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -40,7 +40,8 @@ class SignInForm extends Component {
 
   componentWillUnmount() {
     if (localStorage.token) {
-      this.props.fetchUser(localStorage.token)
+      // not necessary to pass attr, think about if it makes sense to
+      this.props.fetchUser(localStorage.token);
     }
     
   }
