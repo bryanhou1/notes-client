@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class NoteList extends Component {
 
   arrayToList() {
-    const {notes} = this.props.notes;
+    const {notes} = this.props;
     return (
       <ul>
         {notes.map((note, i) => <li key={i}>{note.title}</li>)}
@@ -12,7 +12,6 @@ class NoteList extends Component {
   }
 
   render() {
-    debugger;
     return (
       <div>
         {this.arrayToList()}

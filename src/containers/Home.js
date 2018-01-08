@@ -28,10 +28,9 @@ class Home extends Component {
 
 
 const mapStateToProps = (state) => {
-  return {
-    notes: state.notes.notes
-  }
+  return {notes: state.notes}
 }
+
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(actions, dispatch);

@@ -1,9 +1,10 @@
-const initialState = {notes: []}
+const initialState = []
 
 export default function notesReducer(state = initialState, action){  
   switch (action.type) {
     case "FETCH_NOTES_SUCCESS":
-      return Object.assign({}, state, {notes: action.notes})
+      console.log(action.notes)
+      return action.notes;
     case "LOGOUT":
       return initialState;
     default:
