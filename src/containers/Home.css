@@ -11,16 +11,16 @@
 }
 
 /* The navigation menu links */
-.sidenav a {
+.sidenav li {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 15px;
     color: #818181;
     display: block;
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
+.sidenav li:hover {
     color: #f1f1f1;
 }
 

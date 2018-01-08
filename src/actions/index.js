@@ -122,7 +122,7 @@ export const fetchNotes = (token) => {
 
     return request.then(
       response => {
-        dispatch({type: "FETCH_CURRENT_USER_NOTES_SUCCESS", notes: response.data})
+        dispatch({type: "FETCH_NOTES_SUCCESS", notes: response.data})
       },
       err => {
         // debugger;

@@ -3,6 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import './Home.css'
+import NoteList from '../components/NoteList';
 
 class Home extends Component {
 	componentDidMount() {
@@ -13,7 +14,7 @@ class Home extends Component {
 		return (
       <div className="container-fluid">
         <div className="sidenav">
-          
+          <NoteList notes={this.props.notes}/>
         </div>
 
         <div id="main">
@@ -28,6 +29,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    notes: state.notes.notes
   }
 }
 
