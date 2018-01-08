@@ -8,7 +8,7 @@ import * as actions from '../actions/index';
 
 import './App.css';
 import NavBar from './NavBar';
-import Routes from './Routes';
+import Routes from '../components/Routes';
 
 class App extends Component {
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/index'; //refractor
-import Messages from './Messages';
+import Messages from '../components/Messages';
 import {Redirect} from 'react-router-dom';
 
 class SignUpForm extends Component {

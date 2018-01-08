@@ -1,9 +1,9 @@
 import React from 'react';
 import PrivateRoute from './PrivateRoute';
 import {Route} from 'react-router-dom';
-import SignInForm from './SignInForm';
-import SignUpForm from './SignUpForm';
-import Home from './Home';
+import SignInForm from '../containers/SignInForm';
+import SignUpForm from '../containers/SignUpForm';
+import Home from '../containers/Home';
 
 const Routes = () => {
 
