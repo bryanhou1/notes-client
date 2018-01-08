@@ -21,7 +21,7 @@ class App extends Component {
       <Router>
         <div>
           <NavBar />
-          <div id="main-container">
+          <div id="sidebar-and-main-container">
             <Routes />
           </div>
         </div>
