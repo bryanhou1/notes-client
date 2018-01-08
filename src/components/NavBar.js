@@ -12,7 +12,6 @@ class NavBar extends Component {
     this.props.logout();
   }
 
-
   loggedInLinks(){
     return (
       <Nav pullRight>
