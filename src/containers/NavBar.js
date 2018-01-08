@@ -40,7 +40,7 @@ class NavBar extends Component {
 
     return (
       <div>
-        <Navbar className="not_signed_in">
+        <Navbar className="not_signed_in" fixedTop={true}>
           <Navbar.Header>
             <Navbar.Brand>
               <LinkContainer to="/">
