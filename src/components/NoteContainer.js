@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {updateNote} from '../actions/index';
 
-class NoteContainer extends Component {
+export default class NoteContainer extends Component {
   
   handleOnChange = (e) => {
     this.props.updateNote(this.props.currentNote, e.target.name, e.target.value)
@@ -42,13 +42,3 @@ class NoteContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const {notes, currentNoteId} = state.notesReducer;
-  return {
-    currentNote: notes.find((n) => n.id === parseInt(currentNoteId,10)),
-    isLoggedIn: !!state.current_user.user.jwt
-  }
-}
-
-
-export default connect(mapStateToProps, {updateNote})(NoteContainer);

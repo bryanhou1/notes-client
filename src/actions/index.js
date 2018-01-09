@@ -148,7 +148,6 @@ export const matchLocalStorageToState = () => {
 
 export function initiateSession() {
   return (dispatch, getState) => {
-    debugger
     if (getState().current_user.user.jwt !== "") {
       return dispatch(fetchUser()).then(() => {
         return dispatch(fetchNotes())

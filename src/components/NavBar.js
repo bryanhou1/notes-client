@@ -4,7 +4,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 import {logout} from '../actions/index';
 import {connect} from 'react-redux';
 
-class NavBar extends Component {
+export default class NavBar extends Component {
   handleLogOut(e) {
     e.preventDefault();
     this.props.logout();
@@ -54,12 +54,6 @@ class NavBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: !!state.current_user.user.jwt
-  };
-};
 
-export default connect(mapStateToProps, {logout})(NavBar);
 
 

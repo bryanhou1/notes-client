@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 
 import {connect} from 'react-redux';
-import {matchLocalStorageToState, initiateSession} from '../actions/index';
+import {matchLocalStorageToState, initiateSession, logout} from '../actions/index';
 
 import './App.css';
-import NavBar from './NavBar';
+import NavBar from '../components/NavBar';
 import Routes from '../components/Routes';
 
 class App extends Component {
@@ -16,10 +16,11 @@ class App extends Component {
   }
   
   render() {
+    const {isLoggedIn, logout} = this.props;
     return (
       <Router>
         <div>
-          <NavBar />
+          <NavBar isLoggedIn={isLoggedIn} logout={logout}/>
           <div id="sidebar-and-main-container">
             <Routes />
           </div>
@@ -29,4 +30,10 @@ class App extends Component {
   }
 }
 
-export default connect(null, {matchLocalStorageToState, initiateSession})(App);
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: !!state.current_user.user.jwt
+  };
+};
+
+export default connect(mapStateToProps, {matchLocalStorageToState, initiateSession, logout})(App);
