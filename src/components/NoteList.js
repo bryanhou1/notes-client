@@ -30,6 +30,9 @@ class NoteList extends Component {
   render() {
     return (
       <div>
+        <ul>
+          <li id="note-list-title">Notes</li>
+        </ul>
         {this.arrayToList()}
       </div>
     )
