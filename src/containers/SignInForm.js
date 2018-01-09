@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {login, removeMessage, fetchUser} from '../actions/index';
+import {login, removeMessage, initiateSession} from '../actions/index';
 import Messages from '../components/Messages';
 import {Redirect} from 'react-router-dom';
-
 
 class SignInForm extends Component {
   state = {
@@ -17,7 +16,6 @@ class SignInForm extends Component {
       [e.target.name]: e.target.value
     });
   };
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -34,11 +32,7 @@ class SignInForm extends Component {
   }
 
   componentWillUnmount() {
-    const {isLoggedIn, token} = this.props;
-    if (isLoggedIn) {
-      this.props.fetchUser(token);
-    }
-    
+    this.props.initiateSession();
   }
   
   render() {
@@ -87,4 +81,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, {login, removeMessage, fetchUser})(SignInForm);
+export default connect(mapStateToProps, {login, removeMessage, initiateSession})(SignInForm);

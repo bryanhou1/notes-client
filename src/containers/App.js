@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 
 import {connect} from 'react-redux';
-import {getAuthStatus} from '../actions/index';
+import {matchLocalStorageToState, initiateSession} from '../actions/index';
 
 import './App.css';
 import NavBar from './NavBar';
@@ -11,9 +11,10 @@ import Routes from '../components/Routes';
 class App extends Component {
 
   componentDidMount() {
-    this.props.getAuthStatus();
+    this.props.matchLocalStorageToState();
+    this.props.initiateSession();
   }
-
+  
   render() {
     return (
       <Router>
@@ -28,4 +29,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, {getAuthStatus})(App);
+export default connect(null, {matchLocalStorageToState, initiateSession})(App);

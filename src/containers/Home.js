@@ -7,10 +7,6 @@ import StatusAndActionBar from '../components/StatusAndActionBar';
 import NoteContainer from '../containers/NoteContainer';
 
 class Home extends Component {
-	componentDidMount() {
-    this.props.fetchNotes(localStorage.token);
-  }
-
 	render () {
     const {notes, switchCurrentNote, currentNoteId} = this.props;
 

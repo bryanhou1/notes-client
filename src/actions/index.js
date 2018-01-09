@@ -3,14 +3,15 @@ import axios from 'axios';
 const SUCCESS = "success";
 const ERROR = "error";
 
-
+//helper
 const authHeader = (token) => {
   return { 'Authorization': 'Bearer ' + token};
 }
 
-
-export const fetchUser = (token) => {
-  return (dispatch) => {
+//actions
+export const fetchUser = () => {
+  return (dispatch, getState) => {
+    const token = getState().current_user.user.jwt
     const request = axios({
       method: 'get',
       url: 'http://localhost:3000/api/current_user',
@@ -27,12 +28,10 @@ export const fetchUser = (token) => {
       }
     )
   }
-
 } 
 
-
-export const login = (user_data) => {
-	return (dispatch) => {
+export const login = user_data => {
+	return dispatch => {
 		dispatch({type: "LOGIN_START"})
 
 		const request = axios.post('http://localhost:3000/api/user_token', {"auth": {
@@ -106,14 +105,10 @@ export const removeMessage = () => {
   }
 }
 
-export const getAuthStatus = () => {
-  return dispatch => {
-    dispatch({ type: "GET_AUTH_STATUS"});
-  }
-}
-
-export const fetchNotes = token => {
-  return dispatch => {
+export const fetchNotes = () => {
+  
+  return (dispatch, getState) => {
+    const token = getState().current_user.user.jwt
     const request = axios({
       method: 'get',
       url: 'http://localhost:3000/api/notes',
@@ -130,7 +125,6 @@ export const fetchNotes = token => {
       }
     )
   }
-
 }
 
 export const switchCurrentNote = currentNoteId => {
@@ -146,4 +140,19 @@ export const updateNote = (currentNote, attr, value) => {
 }
 
 
+export const matchLocalStorageToState = () => {
+  return dispatch => {
+    dispatch({ type: "MATCH_LOCAL_STORAGE_TO_STATE"});
+  }
+}
 
+export function initiateSession() {
+  return (dispatch, getState) => {
+    debugger
+    if (getState().current_user.user.jwt !== "") {
+      return dispatch(fetchUser()).then(() => {
+        return dispatch(fetchNotes())
+      })
+    }
+  }
+}
