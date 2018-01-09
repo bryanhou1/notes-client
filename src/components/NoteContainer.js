@@ -1,11 +1,38 @@
 import React, {Component} from 'react';
 
 class NoteContainer extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state={
+      title: "1",
+      text: "1"
+    }
+  }
+
+  componentWillReceiveProps() {
+    const note = this.currentNote();
+
+    if (note) {
+      this.setState({
+        title: note.title,
+        text: note.text
+      })
+    }
+  }
+
   currentNote() {
     const {notes, currentNoteId} = this.props;
     const note = notes.find((n) => n.id === parseInt(currentNoteId,10))
     return note;
   }
+
+  handleOnChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+    // debugger;
+  };
 
   render() {
     const {notes, currentNoteId} = this.props;
@@ -18,7 +45,21 @@ class NoteContainer extends Component {
     } else {
       return (
         <div>
-          <textarea name="" id="" cols="30" rows="10">{this.currentNote().text}</textarea>
+          <input
+            type="text"
+            name="title"
+            id="note-title"
+            value={this.state.title}
+            onChange={e => this.handleOnChange(e)}
+            placeholder="Title"
+          />
+          <textarea 
+            name="body"
+            id="note-body"
+            value={this.state.text}
+            onChange={e => this.handleOnChange(e)}
+            placeholder=""
+          />
         </div>
       )
     }
