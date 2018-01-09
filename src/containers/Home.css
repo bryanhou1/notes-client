@@ -46,6 +46,7 @@ li.current-note {
 
 textarea, input {
   /*border: 0px solid;*/
+  resize:none;
 }
 
 textarea#note-text {
