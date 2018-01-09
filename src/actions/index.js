@@ -139,3 +139,9 @@ export const switchCurrentNote = (currentNoteId) => {
   }
 }
 
+export const updateNote = (currentNote, attr, value) => {
+    return function action(dispatch) {
+    dispatch({type: "UPDATE_NOTE", currentNote, attr, value})
+  }
+}
+

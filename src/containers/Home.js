@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import './Home.css'
 import NoteList from '../components/NoteList';
-import NoteContainer from '../components/NoteContainer';
+import NoteContainer from '../containers/NoteContainer';
 
 class Home extends Component {
 	componentDidMount() {
