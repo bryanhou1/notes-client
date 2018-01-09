@@ -1,22 +1,29 @@
 import React, {Component} from 'react';
+import NoteListItem from './NoteListItem';
+
 
 class NoteList extends Component {
+  state = {
+    activeId: null
+  }
 
-  handleOnClick(e) {
-    const {noteId} = e.currentTarget.dataset;
-    this.props.switchCurrentNote(noteId);
+
+  handleOnClick(activeId) {
+    this.setState({activeId: activeId})
   }
 
   arrayToList() {
-    const {notes} = this.props;
+
+    const {notes, switchCurrentNote, currentNoteId} = this.props;
     return (
       <ul>
-        {notes.map((note) => <li
+        {notes.map((note) => <NoteListItem
           key={note.id}
-          data-note-id={note.id}
-          onClick={(e) => this.handleOnClick(e)}>
-            {note.title}
-        </li>)}
+          note={note}
+          switchCurrentNote={switchCurrentNote}
+          isActive={this.state.activeId === note.id}
+          onClick={(e) => this.handleOnClick(e)}
+        />)}
       </ul>
     )
   }

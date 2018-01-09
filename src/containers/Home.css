@@ -36,6 +36,9 @@
     .sidenav a {font-size: 18px;}
 }
 
+li.current-note {
+  background: #444;
+}
 
 *:focus {
     outline: none;
