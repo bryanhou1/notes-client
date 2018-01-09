@@ -34,7 +34,7 @@ class NavBar extends Component {
   }
 
   render () {
-    const {loggedIn} = this.props;
+    const {isLoggedIn} = this.props;
 
     return (
       <div>
@@ -47,7 +47,7 @@ class NavBar extends Component {
               </LinkContainer>
             </Navbar.Brand>
           </Navbar.Header>
-            {loggedIn ? this.loggedInLinks() : this.loggedOutLinks()}
+            {isLoggedIn ? this.loggedInLinks() : this.loggedOutLinks()}
         </Navbar>
       </div>
     )
@@ -56,7 +56,7 @@ class NavBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loggedIn: !!state.current_user.user.jwt
+    isLoggedIn: !!state.current_user.user.jwt
   };
 };
 

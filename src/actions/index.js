@@ -10,11 +10,10 @@ const authHeader = (token) => {
 
 
 export const fetchUser = (token) => {
-  return function action(dispatch) {
+  return (dispatch) => {
     const request = axios({
       method: 'get',
       url: 'http://localhost:3000/api/current_user',
-      
       headers: authHeader(token),
     })
 
@@ -33,7 +32,7 @@ export const fetchUser = (token) => {
 
 
 export const login = (user_data) => {
-	return function action(dispatch) {
+	return (dispatch) => {
 		dispatch({type: "LOGIN_START"})
 
 		const request = axios.post('http://localhost:3000/api/user_token', {"auth": {
@@ -58,8 +57,8 @@ export const login = (user_data) => {
 	}
 }
 
-export const register = (user_data) => {
-	return function action(dispatch) {
+export const register = user_data => {
+	return dispatch => {
 		dispatch({type: "REGISTER_START"})
 		const request = axios.post('http://localhost:3000/api/signup', {
 	    email: user_data.email,
@@ -80,6 +79,7 @@ export const register = (user_data) => {
 				// dispatch({type: "REGISTER_FAILURE"})
 				dispatch({type: "ALERT", messages: {style: ERROR, text: err.response.data.errors}})
         return err;
+
 			},
 		)
 
@@ -89,7 +89,7 @@ export const register = (user_data) => {
 
 
 export const logout = () =>  {
-    return (dispatch) => {
+    return dispatch => {
     	dispatch({
         type: "LOGOUT",
     	})
@@ -99,7 +99,7 @@ export const logout = () =>  {
 }
 
 export const removeMessage = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: "CLEAR_ALERT"
     })
@@ -107,13 +107,13 @@ export const removeMessage = () => {
 }
 
 export const getAuthStatus = () => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({ type: "GET_AUTH_STATUS"});
   }
 }
 
-export const fetchNotes = (token) => {
-  return function action(dispatch) {
+export const fetchNotes = token => {
+  return dispatch => {
     const request = axios({
       method: 'get',
       url: 'http://localhost:3000/api/notes',
@@ -133,15 +133,17 @@ export const fetchNotes = (token) => {
 
 }
 
-export const switchCurrentNote = (currentNoteId) => {
-  return function action(dispatch) {
+export const switchCurrentNote = currentNoteId => {
+  return dispatch => {
     dispatch({type: "DEFINE_CURRENT_NOTE", currentNoteId})
   }
 }
 
 export const updateNote = (currentNote, attr, value) => {
-    return function action(dispatch) {
+    return dispatch => {
     dispatch({type: "UPDATE_NOTE", currentNote, attr, value})
   }
 }
+
+
 

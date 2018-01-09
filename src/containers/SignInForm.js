@@ -13,7 +13,6 @@ class SignInForm extends Component {
   }
 
   handleChange = (e) => {
-    // console.log(e);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -35,9 +34,9 @@ class SignInForm extends Component {
   }
 
   componentWillUnmount() {
-    if (localStorage.token) {
-      // not necessary to pass attr, think about if it makes sense to
-      this.props.fetchUser(localStorage.token);
+    const {isLoggedIn, token} = this.props;
+    if (isLoggedIn) {
+      this.props.fetchUser(token);
     }
     
   }
@@ -83,7 +82,9 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
     alert: state.alert,
-  };
+    isLoggedIn: !!state.current_user.user.jwt,
+    token: state.current_user.user.jwt
+  }
 };
 
 export default connect(mapStateToProps, {login, removeMessage, fetchUser})(SignInForm);

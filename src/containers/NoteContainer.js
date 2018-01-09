@@ -9,12 +9,12 @@ class NoteContainer extends Component {
   };
 
   render() {
-    const {currentNote} = this.props;
+    const {currentNote, isLoggedIn} = this.props;
 
     if (!currentNote) {
       return (
         <div>
-          {localStorage.token ? "Select a note on the left or create a new note" : ""}
+          {isLoggedIn ? "Select a note on the left or create a new note" : ""}
         </div>
       )
     } else {
@@ -45,7 +45,8 @@ class NoteContainer extends Component {
 const mapStateToProps = (state) => {
   const {notes, currentNoteId} = state.notesReducer;
   return {
-    currentNote: notes.find((n) => n.id === parseInt(currentNoteId,10))
+    currentNote: notes.find((n) => n.id === parseInt(currentNoteId,10)),
+    isLoggedIn: !!state.current_user.user.jwt
   }
 }
 
