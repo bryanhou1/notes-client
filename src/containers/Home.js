@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchNotes, switchCurrentNote, updateNote} from '../actions/index';
+import {fetchNotes, switchCurrentNote, updateNote, submitNote} from '../actions/index';
 import './Home.css'
 import NoteList from '../components/NoteList';
 import StatusAndActionBar from '../components/StatusAndActionBar';
@@ -8,7 +8,7 @@ import NoteContainer from '../components/NoteContainer';
 
 class Home extends Component {
 	render () {
-    const {notes, switchCurrentNote, currentNote, updateNote} = this.props;
+    const {notes, switchCurrentNote, currentNote, updateNote, submitNote} = this.props;
 
 		return (
       <div className="container-fluid">
@@ -17,7 +17,7 @@ class Home extends Component {
         </div>
 
         <div id="main">
-          <StatusAndActionBar/>
+          <StatusAndActionBar submitNote={submitNote}/>
           <NoteContainer currentNote={currentNote} updateNote={updateNote}/>
         </div>
       </div>
@@ -33,5 +33,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {fetchNotes, switchCurrentNote, updateNote})(Home);
+export default connect(mapStateToProps, {fetchNotes, switchCurrentNote, updateNote, submitNote})(Home);
 

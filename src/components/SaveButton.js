@@ -4,7 +4,7 @@ class SaveButton extends Component {
   
   handleOnClick(e) {
     e.preventDefault();
-    debugger;
+    this.props.submitNote();
   }
 
   render() {

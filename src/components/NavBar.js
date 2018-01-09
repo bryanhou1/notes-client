@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import {logout} from '../actions/index';
-import {connect} from 'react-redux';
 
 export default class NavBar extends Component {
   handleLogOut(e) {

@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {updateNote} from '../actions/index';
 
 export default class NoteContainer extends Component {
   
