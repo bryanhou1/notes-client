@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import './Home.css'
 import NoteList from '../components/NoteList';
+import NoteContainer from '../components/NoteContainer';
 
 class Home extends Component {
 	componentDidMount() {
@@ -11,14 +12,16 @@ class Home extends Component {
   }
 
 	render () {
+    const {notes, switchCurrentNote, currentNoteId} = this.props;
+
 		return (
       <div className="container-fluid">
         <div className="sidenav">
-          <NoteList notes={this.props.notes}/>
+          <NoteList notes={notes} switchCurrentNote={switchCurrentNote}/>
         </div>
 
         <div id="main">
-          
+          <NoteContainer notes={notes} currentNoteId={currentNoteId}/>
         </div>
       </div>
 		)
@@ -26,9 +29,11 @@ class Home extends Component {
 }
 
 
-
 const mapStateToProps = (state) => {
-  return {notes: state.notes}
+  return {
+    notes: state.notesReducer.notes,
+    currentNoteId: state.notesReducer.currentNoteId
+  }
 }
 
 

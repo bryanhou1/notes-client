@@ -131,4 +131,11 @@ export const fetchNotes = (token) => {
     )
   }
 
-} 
+}
+
+export const switchCurrentNote = (currentNoteId) => {
+  return function action(dispatch) {
+    dispatch({type: "DEFINE_CURRENT_NOTE", currentNoteId})
+  }
+}
+
