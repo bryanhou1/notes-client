@@ -13,8 +13,7 @@ class NoteList extends Component {
   }
 
   arrayToList() {
-
-    const {notes, switchCurrentNote, currentNoteId} = this.props;
+    const {notes, switchCurrentNote} = this.props;
     return (
       <ul>
         {notes.map((note) => <NoteListItem

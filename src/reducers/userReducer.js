@@ -1,4 +1,4 @@
-const initialState = {user: {}, isLoggingIn: false}
+const initialState = {user: {jwt: ""}, isLoggingIn: false}
 
 
 export default function userReducer(state = initialState, action){  
