@@ -5,9 +5,9 @@ class SaveStatus extends Component {
   render() {
 
     return (
-      <div>
+      <span className="statusBarComponent">
         Last Saved On...
-      </div>
+      </span>
     )
   }
 }

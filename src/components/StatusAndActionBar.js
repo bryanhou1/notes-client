@@ -7,7 +7,7 @@ class StatusAndActionBar extends Component {
   render() {
 
     return (
-      <div>
+      <div id="status-and-action-bar">
         <SaveStatus />
         <StarButton />
         <SaveButton />

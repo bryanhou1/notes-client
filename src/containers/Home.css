@@ -20,7 +20,7 @@
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav li:hover {
+.sidenav li:hover, .statusBarComponent:hover {
     color: #f1f1f1;
 }
 
@@ -45,8 +45,17 @@ li.current-note {
 }
 
 textarea, input {
-  /*border: 0px solid;*/
+  border: 0px solid;
   resize:none;
+}
+
+#status-and-action-bar{
+  text-align: right;
+}
+
+span.statusBarComponent{
+  padding: 15px 15px;
+  
 }
 
 textarea#note-text {
