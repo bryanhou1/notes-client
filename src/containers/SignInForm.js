@@ -1,19 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as actions from '../actions/index'; //refractor
+import {login, removeMessage, fetchUser} from '../actions/index';
 import Messages from '../components/Messages';
 import {Redirect} from 'react-router-dom';
 
 
 class SignInForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      redirectToReferrer: !!localStorage.token,
-      email: "",
-      password: "",
-    }
+  state = {
+    redirectToReferrer: !!localStorage.token,
+    email: "",
+    password: "",
   }
 
   handleChange = (e) => {
@@ -90,8 +86,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+export default connect(mapStateToProps, {login, removeMessage, fetchUser})(SignInForm);

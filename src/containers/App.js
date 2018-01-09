@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
 
 import {connect} from 'react-redux';
-
-import {bindActionCreators} from 'redux';
-import * as actions from '../actions/index';
+import {getAuthStatus} from '../actions/index';
 
 import './App.css';
 import NavBar from './NavBar';
@@ -30,9 +28,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actions, dispatch);
-}
-//getAuthStatus();
-
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null, {getAuthStatus})(App);

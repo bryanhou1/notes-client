@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as actions from '../actions/index';
+import {updateNote} from '../actions/index';
 
 class NoteContainer extends Component {
   
@@ -50,9 +49,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actions, dispatch);
-}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(NoteContainer);
+export default connect(mapStateToProps, {updateNote})(NoteContainer);

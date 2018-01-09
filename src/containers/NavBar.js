@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import * as actions from '../actions/index';
+import {logout} from '../actions/index';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 class NavBar extends Component {
   handleLogOut(e) {
@@ -61,10 +60,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, {logout})(NavBar);
 
 
