@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SaveStatus from './SaveStatus';
 import SaveButton from './SaveButton';
 import StarButton from './StarButton';
+import DeleteButton from './DeleteButton';
 class StatusAndActionBar extends Component {
 
   render() {
@@ -11,6 +12,7 @@ class StatusAndActionBar extends Component {
         <SaveStatus />
         <StarButton />
         <SaveButton />
+        <DeleteButton />
       </div>
     )
   }
