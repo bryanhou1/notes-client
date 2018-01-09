@@ -9,7 +9,6 @@ import NoteContainer from '../components/NoteContainer';
 class Home extends Component {
 	render () {
     const {notes, switchCurrentNote, currentNote, updateNote, submitNote} = this.props;
-
 		return (
       <div className="container-fluid">
         <div className="sidenav">
@@ -17,7 +16,7 @@ class Home extends Component {
         </div>
 
         <div id="main">
-          <StatusAndActionBar submitNote={submitNote}/>
+          <StatusAndActionBar show={!!currentNote} submitNote={submitNote} />
           <NoteContainer currentNote={currentNote} updateNote={updateNote}/>
         </div>
       </div>
@@ -30,6 +29,7 @@ const mapStateToProps = (state) => {
   return {
     notes: notes,
     currentNote: notes.find((n) => n.id === parseInt(currentNoteId,10))
+
   }
 }
 
