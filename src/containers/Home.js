@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import './Home.css'
 import NoteList from '../components/NoteList';
+import StatusAndActionBar from '../components/StatusAndActionBar';
 import NoteContainer from '../containers/NoteContainer';
 
 class Home extends Component {
@@ -21,6 +22,7 @@ class Home extends Component {
         </div>
 
         <div id="main">
+          <StatusAndActionBar/>
           <NoteContainer notes={notes} currentNoteId={currentNoteId}/>
         </div>
       </div>

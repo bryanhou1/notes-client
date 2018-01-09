@@ -15,7 +15,7 @@ class NoteContainer extends Component {
     if (!currentNote) {
       return (
         <div>
-          Select a note on the left or create a new note
+          {localStorage.token ? "Select a note on the left or create a new note" : ""}
         </div>
       )
     } else {
@@ -40,7 +40,6 @@ class NoteContainer extends Component {
         </div>
       )
     }
-    
   }
 }
 

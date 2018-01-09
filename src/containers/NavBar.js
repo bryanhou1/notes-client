@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import Logo from '../logo.svg';
 import * as actions from '../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -44,7 +43,8 @@ class NavBar extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <LinkContainer to="/">
-                <img src={Logo} alt="Logo" href="#" />
+                <i className="fa fa-newspaper-o fa-2x" aria-hidden="true" href="#"></i>
+
               </LinkContainer>
             </Navbar.Brand>
           </Navbar.Header>
