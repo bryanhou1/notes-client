@@ -9,8 +9,8 @@ export default function notesReducer(state = initialState, action){
     case "UPDATE_NOTE":
       const {currentNote, attr, value} = action;
       const index = state.notes.findIndex((note) => note.id === currentNote.id)
-      const modifiedNote = Object.assign({}, currentNote, {[attr]: value })
-
+      const modifiedNote = Object.assign({}, currentNote, {[attr]: value, modified: true})
+      
       return Object.assign({},state, {notes: [
         ...state.notes.slice(0,index),
         modifiedNote,

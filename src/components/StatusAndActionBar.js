@@ -6,13 +6,13 @@ import DeleteButton from './DeleteButton';
 class StatusAndActionBar extends Component {
 
   render() {
-    if (this.props.show) {
-      const {submitNote} = this.props;
+    const {currentNote, submitNote} = this.props;
+    if (!!currentNote) {
       return (
         <div id="status-and-action-bar">
           <SaveStatus />
           <StarButton />
-          <SaveButton submitNote={submitNote}/>
+          <SaveButton currentNote={currentNote} submitNote={submitNote}/>
           <DeleteButton />
         </div>
       )

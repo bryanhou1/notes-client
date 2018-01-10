@@ -7,10 +7,16 @@ class SaveButton extends Component {
     this.props.submitNote();
   }
 
+
+disableButtonLogic() {
+  const {currentNote} = this.props;
+  debugger;
+  return currentNote.isSaving || !currentNote.modified ? "fa fa-floppy-o fa-lg fa-disabled" : "fa fa-floppy-o fa-lg"
+}
   render() {
     return (
       <span className="statusBarComponent">
-        <i className="fa fa-floppy-o fa-lg" aria-hidden="true" onClick={(e) => this.handleOnClick(e)}/>
+        <i className={this.disableButtonLogic()} aria-hidden="true" onClick={(e) => this.handleOnClick(e)}/>
       </span>
     )
   }
