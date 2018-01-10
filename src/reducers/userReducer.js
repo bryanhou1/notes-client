@@ -4,15 +4,15 @@ const initialState = {user: {jwt: ""}, isLoggingIn: false}
 export default function userReducer(state = initialState, action){  
   switch (action.type) {
     case "MATCH_LOCAL_STORAGE_TO_STATE":
-      return Object.assign({}, state, {user: {jwt: localStorage.token}})
+      return {...state, user: {jwt: localStorage.token})
     case "FETCH_CURRENT_USER_SUCCESS":
-      return Object.assign({}, state, {user: {...state.user ,...action.user}})
+      return {...state, user: {...state.user ,...action.user})
     case "LOGIN_START":
-    	return Object.assign({}, state, {isLoggingIn: true})
+    	return {...state, isLoggingIn: true}
     case "LOGIN_FAILURE":
-    	return Object.assign({}, state, {isLoggingIn: false})
+    	return {...state, isLoggingIn: false}
     case "LOGIN_SUCCESS":
-    	return Object.assign({}, state, {user: action.user}, {isLoggingIn: false})
+    	return {...state, user: action.user, isLoggingIn: false)
     case "LOGOUT":
       return initialState;
     default:
