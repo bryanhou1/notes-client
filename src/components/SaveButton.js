@@ -7,11 +7,11 @@ class SaveButton extends Component {
     this.props.submitNote();
   }
 
+  disableButtonLogic() {
+    const {currentNote} = this.props;
+    return currentNote.isSaving || !currentNote.modified ? "fa fa-floppy-o fa-lg fa-disabled" : "fa fa-floppy-o fa-lg"
+  }
 
-disableButtonLogic() {
-  const {currentNote} = this.props;
-  return currentNote.isSaving || !currentNote.modified ? "fa fa-floppy-o fa-lg fa-disabled" : "fa fa-floppy-o fa-lg"
-}
   render() {
     return (
       <span className="statusBarComponent">
