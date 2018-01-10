@@ -3,10 +3,9 @@ import React, {Component} from 'react';
 class PrevButton extends Component {
 
   handleOnClick(e) {
-    const {switchCurrentNote, currentNoteId} = this.props;
     const prevNoteId = this.prevNoteId();
     if (prevNoteId) {
-      switchCurrentNote(prevNoteId);
+      this.props.switchCurrentNote(prevNoteId);
     }
   }
 

@@ -3,10 +3,9 @@ import React, {Component} from 'react';
 class NextButton extends Component {
 
   handleOnClick(e) {
-    const {switchCurrentNote, currentNoteId} = this.props;
     const nextNoteId = this.nextNoteId();
     if (nextNoteId) {
-      switchCurrentNote(nextNoteId);
+      this.props.switchCurrentNote(nextNoteId);
     }
   }
 
