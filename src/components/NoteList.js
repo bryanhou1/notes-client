@@ -3,29 +3,21 @@ import NoteListItem from './NoteListItem';
 import AddNewButton from './AddNewButton';
 class NoteList extends Component {
   arrayToList() {
-    const {notes, switchCurrentNote, currentNoteId} = this.props;
-    if (Object.keys(notes).length === 0) {
-      return null;
-    } else {
-      const list = [];
+    const {notes,notesArr, switchCurrentNote, currentNoteId} = this.props;
 
-      for (let key in notes) {
-        list.push(<NoteListItem
-          key={notes[key].id}
-          note={notes[key]}
+    return (
+      <ul>
+        {notesArr.map((lookup) => <NoteListItem
+          key={lookup.id}
           switchCurrentNote={switchCurrentNote}
-          isActive={currentNoteId === notes[key].id}
-        />)
-      }
-
-      return (
-        <ul>
-          {list}
-        </ul>
-      )
-    }
+          note={notes[lookup.id]}
+          isActive={currentNoteId === lookup.id}/>
+        )}
+      </ul>
+    )
+      
   }
-    
+
 
   render() {
     return (

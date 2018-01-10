@@ -8,11 +8,11 @@ import NoteContainer from '../components/NoteContainer';
 
 class Home extends Component {
 	render () {
-    const {notes, switchCurrentNote, currentNote, updateNote, submitNote, createNewNote, deleteNote} = this.props;
+    const {notesArr, notes, switchCurrentNote, currentNote, updateNote, submitNote, createNewNote, deleteNote} = this.props;
 		return (
       <div className="container-fluid">
         <div className="sidenav">
-          <NoteList notes={notes} currentNoteId={(currentNote || {}).id} switchCurrentNote={switchCurrentNote} createNewNote={createNewNote}/>
+          <NoteList notesArr={notesArr} notes={notes} currentNoteId={(currentNote || {}).id} switchCurrentNote={switchCurrentNote} createNewNote={createNewNote}/>
         </div>
 
         <div id="main">
@@ -25,10 +25,11 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const {notes, currentNoteId} = state.notesReducer;
+  const {notes, currentNoteId, notesArr} = state.notesReducer;
   return {
     notes: notes,
-    currentNote: notes[currentNoteId]
+    currentNote: notes[currentNoteId],
+    notesArr : notesArr
   }
 }
 

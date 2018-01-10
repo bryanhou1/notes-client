@@ -5,7 +5,7 @@ class NoteListItem extends Component {
 
   handleOnClick(e) {
     const {noteId} = e.currentTarget.dataset;
-    const {switchCurrentNote, note} = this.props;
+    const {switchCurrentNote} = this.props;
     switchCurrentNote(noteId);
   }
 
