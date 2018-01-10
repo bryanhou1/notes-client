@@ -18,7 +18,7 @@ class NoteListItem extends Component {
         className={isActive ? "current-note": ""}
         onClick={(e) => this.handleOnClick(e)}
         >
-        {note.title}
+        {note.title === "" ? "untitled" : note.title}
       </li>
     )
   }
