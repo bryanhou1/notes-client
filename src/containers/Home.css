@@ -24,11 +24,15 @@
 
 #main {
     margin-left: 160px; /* Same as the width of the sidebar */
-    padding: 0px 10px;
+    padding: 0 10px;
 }
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
+}
+
+span.statusBarComponent{
+  padding: 5px 2px;
 }
 
 li.current-note {
@@ -49,12 +53,6 @@ textarea, input {
   text-align: right;
 }
 
-span.statusBarComponent{
-  padding: 5px 2px;
-}
-
-.add-new-btn {
-}
 textarea#note-text {
   width:100%;
   height: 80vh; 
