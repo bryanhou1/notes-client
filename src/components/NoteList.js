@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import NoteListItem from './NoteListItem';
 
-
 class NoteList extends Component {
   state = {
     activeId: null
   }
-
 
   handleOnClick(activeId) {
     this.setState({activeId: activeId})
@@ -14,18 +12,29 @@ class NoteList extends Component {
 
   arrayToList() {
     const {notes, switchCurrentNote} = this.props;
-    return (
-      <ul>
-        {notes.map((note) => <NoteListItem
-          key={note.id}
-          note={note}
+    if (Object.keys(notes).length === 0) {
+      return null;
+    } else {
+      const list = [];
+
+      for (let key in notes) {
+        list.push(<NoteListItem
+          key={notes[key].id}
+          note={notes[key]}
           switchCurrentNote={switchCurrentNote}
-          isActive={this.state.activeId === note.id}
+          isActive={this.state.activeId === notes[key].id}
           onClick={(e) => this.handleOnClick(e)}
-        />)}
-      </ul>
-    )
+        />)
+      }
+
+      return (
+        <ul>
+          {list}
+        </ul>
+      )
+    }
   }
+    
 
   render() {
     return (

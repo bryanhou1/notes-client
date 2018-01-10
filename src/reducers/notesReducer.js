@@ -1,21 +1,31 @@
-const initialState = {notes: [], currentNoteId: null}
+const initialState = {notes: {}, currentNoteId: null}
 
 export default function notesReducer(state = initialState, action){  
   switch (action.type) {
     case "FETCH_NOTES_SUCCESS":
-      return {...state, notes: action.notes};
+      const {notes} = action;
+      const dictionary = {};
+      for (let i = 0; i < notes.length; i++) {
+        dictionary[notes[i].id] = notes[i];
+      }
+      return {...state, notes: dictionary};
     case "DEFINE_CURRENT_NOTE":
       return {...state, currentNoteId: action.currentNoteId}
     case "UPDATE_NOTE":
       const {currentNote, attr, value} = action;
-      const index = state.notes.findIndex((note) => note.id === currentNote.id)
       const modifiedNote = {...currentNote, [attr]: value, modified: true}
 
-      return {...state, notes: [
-        ...state.notes.slice(0,index),
-        modifiedNote,
-        ...state.notes.slice(index+1)
-      ]};
+      return {...state, notes: {...state.notes , [modifiedNote.id]: modifiedNote}};
+    // case "SUBMIT_NOTE_START":
+    //   id: currentNoteId
+    //   // dispatch to display "saving..." and have attr "isSaving: true, Modified: false"
+
+    // case "SUBMIT_NOTE_SUCCESS":
+    //   id: currentNoteId, last_updated: response.data
+    //   // dispatch isSaving === false, last saved, response.data
+    // case "SUBMIT_NOTE_FAILURE":
+    //   //make isSaving === false, modified=== true
+    //   id: currentNoteId
     case "LOGOUT":
       return initialState;
     default:

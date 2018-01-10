@@ -111,9 +111,9 @@ export const fetchNotes = () => {
       url: 'http://localhost:3000/api/notes',
       headers: authHeader(token),
     })
-
     return request.then(
       response => {
+        debugger;
         dispatch({type: "FETCH_NOTES_SUCCESS", notes: response.data})
       },
       err => {
@@ -164,17 +164,10 @@ export const submitNote = () => {
         //make isSaving === false, modified=== true
         dispatch({type: "SUBMIT_NOTE_FAILURE", id: currentNoteId})
         return err;
-      },
+      }
     )
   }
-
 }
-
-
-
-
-
-
 
 export const matchLocalStorageToState = () => {
   return dispatch => {

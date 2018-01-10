@@ -28,7 +28,7 @@ const mapStateToProps = (state) => {
   const {notes, currentNoteId} = state.notesReducer;
   return {
     notes: notes,
-    currentNote: notes.find((n) => n.id === parseInt(currentNoteId,10))
+    currentNote: notes[currentNoteId],
 
   }
 }
