@@ -9,7 +9,7 @@ class AddNewButton extends Component {
   render() {
     return (
       <span className="statusBarComponent">
-        <i className="fa fa-plus add-new-btn" aria-hidden="true" onClick={(e) => this.handleOnClick(e)}/>
+        <i className="fa fa-plus add-new-btn fa-lg" aria-hidden="true" onClick={(e) => this.handleOnClick(e)}/>
       </span>
     )
   }
