@@ -81,11 +81,8 @@ export const register = user_data => {
 
 			},
 		)
-
-
 	}
 }
-
 
 export const logout = () =>  {
     return dispatch => {
@@ -134,10 +131,49 @@ export const switchCurrentNote = currentNoteId => {
 }
 
 export const updateNote = (currentNote, attr, value) => {
-    return dispatch => {
+  return dispatch => {
     dispatch({type: "UPDATE_NOTE", currentNote, attr, value})
   }
 }
+
+export const submitNote = () => {
+  return (dispatch, getState) => {
+    const token = getState().current_user.user.jwt;
+    const {notes, currentNoteId} = getState().notesReducer;
+    const currentNote = notes.find((n) => n.id === parseInt(currentNoteId,10))
+    if (!currentNote.modified) {
+      return;
+    }
+    const {title, text, starred} = currentNote;
+    const request = axios({
+      method: 'patch',
+      url: `http://localhost:3000/api/notes/${currentNoteId}`,
+      data: {title: title, text: text, starred: starred},
+      headers: authHeader(token),
+    })
+
+    dispatch({type: "SUBMIT_NOTE_START", id: currentNoteId});
+    // dispatch to display "saving..." and have attr "isSaving: true, Modified: false"
+
+    return request.then(
+      response => {
+          // dispatch isSaving === false, last saved, response.data
+          dispatch({type: "SUBMIT_NOTE_SUCCESS", id: currentNoteId, last_updated: response.data})
+      },
+      err => {
+        //make isSaving === false, modified=== true
+        dispatch({type: "SUBMIT_NOTE_FAILURE", id: currentNoteId})
+        return err;
+      },
+    )
+  }
+
+}
+
+
+
+
+
 
 
 export const matchLocalStorageToState = () => {
