@@ -24,7 +24,9 @@ class SignUpForm extends Component {
     const {email, password, name, username} = this.state;
     
     this.props.register({email: email, password: password, username: username, name: name}).then((status) => {
-      this.setState({redirectToReferrer: (status === 201)}) 
+      setTimeout(() => {
+        this.setState({redirectToReferrer: (status === 201)})
+      }, 1000)
     })
   }
 

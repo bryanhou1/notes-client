@@ -22,7 +22,9 @@ class SignInForm extends Component {
     const {email, password} = this.state;
     if (email && password) {
       this.props.login({email: email, password: password}).then((status) => {
-        this.setState({redirectToReferrer: (status === 201)})
+        setTimeout(() => {
+          this.setState({redirectToReferrer: (status === 201)})
+        }, 1000)
       })
     }
   }
