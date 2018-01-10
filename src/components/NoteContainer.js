@@ -7,14 +7,10 @@ export default class NoteContainer extends Component {
   };
 
   render() {
-    const {currentNote, isLoggedIn} = this.props;
+    const {currentNote} = this.props;
 
     if (!currentNote) {
-      return (
-        <div>
-          {isLoggedIn ? "Select a note on the left or create a new note" : ""}
-        </div>
-      )
+      return null;
     } else {
       return (
         <div>

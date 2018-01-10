@@ -36,16 +36,17 @@ export default class NavBar extends Component {
 
     return (
       <div>
-        <Navbar className="not_signed_in" fixedTop={true}>
+
+        <Navbar className="not_signed_in" fixedTop={true} collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <LinkContainer to="/">
-                <i className="fa fa-newspaper-o fa-2x" aria-hidden="true" href="#"></i>
-
-              </LinkContainer>
+              <i className="fa fa-newspaper-o fa-2x" aria-hidden="true" href="#"/>
             </Navbar.Brand>
+            <Navbar.Toggle />
           </Navbar.Header>
+          <Navbar.Collapse>
             {isLoggedIn ? this.loggedInLinks() : this.loggedOutLinks()}
+          </Navbar.Collapse>
         </Navbar>
       </div>
     )
