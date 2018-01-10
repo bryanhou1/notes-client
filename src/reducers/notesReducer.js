@@ -49,12 +49,12 @@ export default function notesReducer(state = initialState, action){
 
     case constants.CREATE_NEW_NOTE_SUCCESS: {
       const {note} = action;
-      return {...state, currentNoteId: note.id, notes: {...state.notes, [note.id]: note}}
+      return {...state, currentNoteId: note.id, notes: {...state.notes, [note.id]: note}, notesArr:[note, ...state.notesArr]}
     }
 
     case constants.DELETE_NOTE_SUCCESS: {
       const {currentNoteId, notesArr} = state;
-      const newState = {...state, currentNoteId: null, notesArr: notesArr.filter((note) => note.id!== currentNoteId)};
+      const newState = {...state, currentNoteId: null, notesArr: notesArr.filter((note) => note.id!== parseInt(currentNoteId,10))};
       delete newState.notes[currentNoteId];
       return newState;
     }

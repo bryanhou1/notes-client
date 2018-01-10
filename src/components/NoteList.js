@@ -15,9 +15,7 @@ class NoteList extends Component {
         )}
       </ul>
     )
-      
   }
-
 
   render() {
     return (
