@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default class NavBar extends Component {
   handleLogOut(e) {
@@ -11,14 +12,19 @@ export default class NavBar extends Component {
   loggedInLinks(){
     return (
       <div>
+        <Navbar.Text pullRight>
+          Signed in as:
+        </Navbar.Text>
         <Nav pullRight>
+          <LinkContainer to="/user">
+            <NavItem>{this.props.currentUser.name}</NavItem>
+          </LinkContainer>
           <LinkContainer to="#" onClick={e => this.handleLogOut(e)}>
             <NavItem>Logout</NavItem>
           </LinkContainer>
+
         </Nav>
-        <Navbar.Text pullRight>
-          Signed in as: <Navbar.Link href="#">{this.props.currentUser.name}</Navbar.Link>
-        </Navbar.Text>
+
       </div>
     )
   }
@@ -45,7 +51,9 @@ export default class NavBar extends Component {
         <Navbar className="not_signed_in" fixedTop={true} collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <i className="fa fa-newspaper-o fa-2x" aria-hidden="true" href="#"/>
+              <LinkContainer to="/">
+                <i className="fa fa-newspaper-o fa-2x" aria-hidden="true"/>
+              </LinkContainer>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
