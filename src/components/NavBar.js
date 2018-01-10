@@ -10,14 +10,16 @@ export default class NavBar extends Component {
 
   loggedInLinks(){
     return (
-      <Nav pullRight>
-        <Navbar.Text>
+      <div>
+        <Nav pullRight>
+          <LinkContainer to="#" onClick={e => this.handleLogOut(e)}>
+            <NavItem>Logout</NavItem>
+          </LinkContainer>
+        </Nav>
+        <Navbar.Text pullRight>
           Signed in as: <Navbar.Link href="#">{this.props.currentUser.name}</Navbar.Link>
         </Navbar.Text>
-        <LinkContainer to="#" onClick={e => this.handleLogOut(e)}>
-          <NavItem>Logout</NavItem>
-        </LinkContainer>
-      </Nav>
+      </div>
     )
   }
 
