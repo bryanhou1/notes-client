@@ -1,9 +1,6 @@
 import axios from 'axios';
 import * as constants from '../constants/constants';
 
-
-
-
 //helper
 const authHeader = (token) => {
   return { 'Authorization': 'Bearer ' + token};
@@ -24,8 +21,6 @@ export const fetchUser = () => {
         dispatch({type: constants.FETCH_CURRENT_USER_SUCCESS, user: response.data})
       },
       err => {
-        // debugger;
-        // dispatch({type: constants.FETCH_FAILURE})
         throw err;
       }
     )
@@ -53,6 +48,7 @@ export const login = user_data => {
 				dispatch({type: constants.LOGIN_FAILURE})
         const message = err.response ? "email or password incorrect" : "network error, please try again later";
 				dispatch({type: constants.ALERT, messages: {style: constants.ERROR, text: [message]}})
+        throw err;
 			},
 		)
 	}
@@ -60,7 +56,6 @@ export const login = user_data => {
 
 export const register = user_data => {
 	return dispatch => {
-		// dispatch({type: constants.REGISTER_START})
 		const request = axios.post(`${constants.DOMAIN}/api/signup`, {
 	    email: user_data.email,
 	    password: user_data.password,
@@ -71,16 +66,13 @@ export const register = user_data => {
 
 		return request.then(
 			response => {
-				// dispatch({type: constants.REGISTER_SUCCESS})
 				dispatch({type: constants.ALERT, messages: {style: constants.SUCCESS, text: ["successfully registered"]}});
 
 				return response.status;
 			},
 			err => {
-				// dispatch({type: constants.REGISTER_FAILURE})
 				dispatch({type: constants.ALERT, messages: {style: constants.ERROR, text: err.response.data.errors}})
         return err;
-
 			},
 		)
 	}
@@ -118,8 +110,7 @@ export const fetchNotes = () => {
         dispatch({type: constants.FETCH_NOTES_SUCCESS, notes: response.data})
       },
       err => {
-        // debugger;
-        // dispatch({type: constants.FETCH_FAILURE})
+        throw err
       }
     )
   }
@@ -174,12 +165,9 @@ export const createNewNote = () => {
       url: `${constants.DOMAIN}/api/notes/`,
       headers: authHeader(token),
     })
-
-    // dispatch({type: constants.CREATE_NEW_NOTE_START, id: currentNoteId});
     return request.then(
       response => {
-        debugger;
-        dispatch({type: constants.CREATE_NEW_NOTE_SUCCESS, note: response})
+        dispatch({type: constants.CREATE_NEW_NOTE_SUCCESS, note: response.data})
       },
       err => {
         throw err;

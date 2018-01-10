@@ -31,9 +31,11 @@ export default function notesReducer(state = initialState, action){
       const {id} = action;
       return {...state, notes: {...state.notes, [id]: {...state.notes[id], isSaving: false, modified: true}}}
     }
-    case constants.CREATE_NEW_NOTE_SUCCESS:
-        // note: response.data
-    case "LOGOUT":
+    case constants.CREATE_NEW_NOTE_SUCCESS: {
+      const {note} = action;
+      return {...state, currentNoteId: note.id, notes: {...state.notes, [note.id]: note}}
+    }
+    case constants.LOGOUT:
       return initialState;
     default:
       return state;
