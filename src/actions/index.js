@@ -207,7 +207,7 @@ export const matchLocalStorageToState = () => {
 
 export function initiateSession() {
   return (dispatch, getState) => {
-    if (getState().currentUser.user.jwt !== "") {
+    if (!!getState().currentUser.user.jwt) {
       return dispatch(fetchUser()).then(() => {
         return dispatch(fetchNotes())
       })
