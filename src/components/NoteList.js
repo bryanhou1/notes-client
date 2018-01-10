@@ -2,16 +2,8 @@ import React, {Component} from 'react';
 import NoteListItem from './NoteListItem';
 import AddNewButton from './AddNewButton';
 class NoteList extends Component {
-  state = {
-    activeId: null
-  }
-
-  handleOnClick(activeId) {
-    this.setState({activeId: activeId})
-  }
-
   arrayToList() {
-    const {notes, switchCurrentNote} = this.props;
+    const {notes, switchCurrentNote, currentNoteId} = this.props;
     if (Object.keys(notes).length === 0) {
       return null;
     } else {
@@ -22,8 +14,7 @@ class NoteList extends Component {
           key={notes[key].id}
           note={notes[key]}
           switchCurrentNote={switchCurrentNote}
-          isActive={this.state.activeId === notes[key].id}
-          onClick={(e) => this.handleOnClick(e)}
+          isActive={currentNoteId === notes[key].id}
         />)
       }
 

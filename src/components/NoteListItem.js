@@ -7,7 +7,6 @@ class NoteListItem extends Component {
     const {noteId} = e.currentTarget.dataset;
     const {switchCurrentNote, onClick, note} = this.props;
     switchCurrentNote(noteId);
-    onClick(note.id);
   }
 
 

@@ -12,7 +12,7 @@ class Home extends Component {
 		return (
       <div className="container-fluid">
         <div className="sidenav">
-          <NoteList notes={notes} switchCurrentNote={switchCurrentNote} createNewNote={createNewNote}/>
+          <NoteList notes={notes} currentNoteId={(currentNote || {}).id} switchCurrentNote={switchCurrentNote} createNewNote={createNewNote}/>
         </div>
 
         <div id="main">
