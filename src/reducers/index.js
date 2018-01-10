@@ -3,7 +3,7 @@ import userReducer from './userReducer';
 import alertReducer from './alertReducer';
 import notesReducer from './notesReducer';
 export default combineReducers({
-	current_user: userReducer,
+	currentUser: userReducer,
 	alert: alertReducer,
   notesReducer,
 });

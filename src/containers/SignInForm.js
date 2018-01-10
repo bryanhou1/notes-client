@@ -76,8 +76,8 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
     alert: state.alert,
-    isLoggedIn: !!state.current_user.user.jwt,
-    token: state.current_user.user.jwt
+    isLoggedIn: !!state.currentUser.user.jwt,
+    token: state.currentUser.user.jwt
   }
 };
 

@@ -32,7 +32,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: !!state.current_user.user.jwt
+    isLoggedIn: !!state.currentUser.user.jwt
   };
 };
 

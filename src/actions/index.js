@@ -12,7 +12,7 @@ const authHeader = (token) => {
 //actions
 export const fetchUser = () => {
   return (dispatch, getState) => {
-    const token = getState().current_user.user.jwt
+    const token = getState().currentUser.user.jwt
     const request = axios({
       method: 'get',
       url: `${constants.DOMAIN}/api/current_user`,
@@ -107,7 +107,7 @@ export const removeMessage = () => {
 export const fetchNotes = () => {
   
   return (dispatch, getState) => {
-    const token = getState().current_user.user.jwt
+    const token = getState().currentUser.user.jwt
     const request = axios({
       method: 'get',
       url: `${constants.DOMAIN}/api/notes`,
@@ -139,7 +139,7 @@ export const updateNote = (currentNote, attr, value) => {
 
 export const submitNote = () => {
   return (dispatch, getState) => {
-    const token = getState().current_user.user.jwt;
+    const token = getState().currentUser.user.jwt;
     const {notes, currentNoteId} = getState().notesReducer;
     const currentNote = notes[currentNoteId];
     if (!currentNote.modified) {
@@ -174,7 +174,7 @@ export const matchLocalStorageToState = () => {
 
 export function initiateSession() {
   return (dispatch, getState) => {
-    if (getState().current_user.user.jwt !== "") {
+    if (getState().currentUser.user.jwt !== "") {
       return dispatch(fetchUser()).then(() => {
         return dispatch(fetchNotes())
       })
