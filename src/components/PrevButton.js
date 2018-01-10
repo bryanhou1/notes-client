@@ -16,10 +16,14 @@ class PrevButton extends Component {
     return (prevIndex === -1) ? null : notesArr[prevIndex].id;
   }
 
+  disableButtonLogic() {
+    return (this.prevNoteId()) ? "fa fa-chevron-left fa-lg" : "fa fa-chevron-left fa-lg fa-disabled"
+  }
+
   render() {
     return (
       <span className="statusBarComponent">
-        <i className="fa fa-chevron-left fa-lg" aria-hidden="true"  onClick={(e) => this.handleOnClick(e)}></i>
+        <i className={this.disableButtonLogic()} aria-hidden="true"  onClick={(e) => this.handleOnClick(e)}></i>
       </span>
     )
   }

@@ -16,10 +16,13 @@ class NextButton extends Component {
     return (nextIndex === notesArr.length) ? null : notesArr[nextIndex].id;
   }
 
+  disableButtonLogic() {
+    return (this.nextNoteId()) ? "fa fa-chevron-right fa-lg" : "fa fa-chevron-right fa-lg fa-disabled"
+  }
   render() {
     return (
       <span className="statusBarComponent">
-        <i className="fa fa-chevron-right fa-lg" aria-hidden="true"  onClick={(e) => this.handleOnClick(e)}></i>
+        <i className={this.disableButtonLogic()} aria-hidden="true"  onClick={(e) => this.handleOnClick(e)}></i>
       </span>
     )
   }
