@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as constants from '../constants/constants';
-
+import {DOMAIN} from '../configs/domain';
 //helper
 const authHeader = (token) => {
   return { 'Authorization': 'Bearer ' + token};
@@ -12,7 +12,7 @@ export const fetchUser = () => {
     const token = getState().currentUser.user.jwt
     const request = axios({
       method: 'get',
-      url: `${constants.DOMAIN}/api/current_user`,
+      url: `${DOMAIN}/api/current_user`,
       headers: authHeader(token),
     })
 
@@ -31,7 +31,7 @@ export const login = user_data => {
 	return dispatch => {
 		dispatch({type: constants.LOGIN_START})
 
-		const request = axios.post(`${constants.DOMAIN}/api/user_token`, {"auth": {
+		const request = axios.post(`${DOMAIN}/api/user_token`, {"auth": {
 	    email: user_data.email,
 	    password: user_data.password,
 	  }});
@@ -56,7 +56,7 @@ export const login = user_data => {
 
 export const register = user_data => {
 	return dispatch => {
-		const request = axios.post(`${constants.DOMAIN}/api/signup`, {
+		const request = axios.post(`${DOMAIN}/api/signup`, {
 	    email: user_data.email,
 	    password: user_data.password,
       name: user_data.name,
@@ -102,7 +102,7 @@ export const fetchNotes = () => {
     const token = getState().currentUser.user.jwt
     const request = axios({
       method: 'get',
-      url: `${constants.DOMAIN}/api/notes`,
+      url: `${DOMAIN}/api/notes`,
       headers: authHeader(token),
     })
     return request.then(
@@ -139,7 +139,7 @@ export const submitNote = () => {
     const {title, text, starred} = currentNote;
     const request = axios({
       method: 'patch',
-      url: `${constants.DOMAIN}/api/notes/${currentNoteId}`,
+      url: `${DOMAIN}/api/notes/${currentNoteId}`,
       data: {title: title, text: text, starred: starred},
       headers: authHeader(token),
     })
@@ -162,7 +162,7 @@ export const createNewNote = () => {
     const token = getState().currentUser.user.jwt;
     const request = axios({
       method: 'post',
-      url: `${constants.DOMAIN}/api/notes/`,
+      url: `${DOMAIN}/api/notes/`,
       headers: authHeader(token),
     })
     return request.then(
@@ -182,7 +182,7 @@ export const deleteNote = () => {
     const noteId = getState().notesReducer.currentNoteId;
     const request = axios({
       method: 'delete',
-      url: `${constants.DOMAIN}/api/notes/${noteId}`,
+      url: `${DOMAIN}/api/notes/${noteId}`,
       headers: authHeader(token),
     })
 
