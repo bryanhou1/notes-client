@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class DeleteButton extends Component {
 
   handleOnClick(e) {
-    e.preventDefault();
     debugger;
   }
 

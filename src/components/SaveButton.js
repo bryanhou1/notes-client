@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class SaveButton extends Component {
   
   handleOnClick(e) {
-    e.preventDefault();
     this.props.submitNote();
   }
 
