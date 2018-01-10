@@ -10,7 +10,7 @@ class StatusAndActionBar extends Component {
     if (!!currentNote) {
       return (
         <div id="status-and-action-bar">
-          <SaveStatus />
+          <SaveStatus currentNote={currentNote}/>
           <StarButton />
           <SaveButton currentNote={currentNote} submitNote={submitNote}/>
           <DeleteButton />
