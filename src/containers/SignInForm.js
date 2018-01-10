@@ -30,7 +30,15 @@ class SignInForm extends Component {
   }
 
   componentDidMount() {
-    this.props.removeMessage();
+    const {alert, removeMessage} = this.props;
+    if (alert.messages.tempPersist === true) {
+      setTimeout (() => {
+        removeMessage();
+      },1000)
+    } else {
+      removeMessage();
+    }
+    
   }
 
   componentWillUnmount() {

@@ -39,10 +39,10 @@ export const login = user_data => {
 
 		return request.then(
 			response => {
-				localStorage.setItem('token', response.data.jwt)
-				dispatch({type: constants.LOGIN_SUCCESS, user: response.data})
-				dispatch({type: constants.ALERT, messages: {style: constants.SUCCESS, text: ["successfully logged in"]}})
-				return response.status;
+        dispatch({type: constants.ALERT, messages: {style: constants.SUCCESS, text: ["successfully logged in"]}})
+        localStorage.setItem('token', response.data.jwt)
+        dispatch({type: constants.LOGIN_SUCCESS, user: response.data})
+        return response.status;
 			},
 			err => {
 				dispatch({type: constants.LOGIN_FAILURE})
@@ -84,7 +84,7 @@ export const logout = () =>  {
         type: constants.LOGOUT,
     	})
       localStorage.removeItem("token");
-    	dispatch({type: constants.ALERT, messages: {style: constants.SUCCESS, text: ["successfully logged out"]}})
+    	dispatch({type: constants.ALERT, messages: {style: constants.SUCCESS, text: ["successfully logged out"], tempPersist: true}});
     }
 }
 
