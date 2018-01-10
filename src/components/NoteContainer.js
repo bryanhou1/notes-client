@@ -25,7 +25,7 @@ export default class NoteContainer extends Component {
           <textarea 
             name="text"
             id="note-text"
-            value={currentNote.text}
+            value={currentNote.text || ""}
             onChange={e => this.handleOnChange(e)}
             placeholder="Start taking notes here"
             autoFocus

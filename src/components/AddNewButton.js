@@ -3,13 +3,13 @@ import React, {Component} from 'react';
 class AddNewButton extends Component {
 
   handleOnClick(e) {
-    debugger
+    this.props.createNewNote();
   }
 
   render() {
     return (
       <span className="statusBarComponent">
-        <i class="fa fa-plus add-new-btn" aria-hidden="true" onClick={(e) => this.handleOnClick(e)}/>
+        <i className="fa fa-plus add-new-btn" aria-hidden="true" onClick={(e) => this.handleOnClick(e)}/>
       </span>
     )
   }

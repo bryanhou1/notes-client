@@ -40,7 +40,9 @@ class NoteList extends Component {
     return (
       <div>
         <ul>
-          <li id="note-list-title">Notes <AddNewButton/></li>
+          <li id="note-list-title">Notes  
+            <AddNewButton createNewNote={this.props.createNewNote}/>
+          </li>
         </ul>
         {this.arrayToList()}
       </div>

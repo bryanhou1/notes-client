@@ -166,6 +166,30 @@ export const submitNote = () => {
   }
 }
 
+export const createNewNote = () => {
+  return (dispatch, getState) => {
+    const token = getState().currentUser.user.jwt;
+    const request = axios({
+      method: 'post',
+      url: `${constants.DOMAIN}/api/notes/`,
+      headers: authHeader(token),
+    })
+
+    // dispatch({type: constants.CREATE_NEW_NOTE_START, id: currentNoteId});
+    return request.then(
+      response => {
+        debugger;
+        dispatch({type: constants.CREATE_NEW_NOTE_SUCCESS, note: response})
+      },
+      err => {
+        throw err;
+      }
+    )
+  }
+}
+
+
+
 export const matchLocalStorageToState = () => {
   return dispatch => {
     dispatch({ type: constants.MATCH_LOCAL_STORAGE_TO_STATE});
