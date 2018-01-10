@@ -140,7 +140,7 @@ export const submitNote = () => {
   return (dispatch, getState) => {
     const token = getState().current_user.user.jwt;
     const {notes, currentNoteId} = getState().notesReducer;
-    const currentNote = notes.find((n) => n.id === parseInt(currentNoteId,10))
+    const currentNote = notes[currentNoteId];
     if (!currentNote.modified) {
       return;
     }
