@@ -176,6 +176,27 @@ export const createNewNote = () => {
   }
 }
 
+export const deleteNote = () => {
+  return (dispatch, getState) => {
+    const token = getState().currentUser.user.jwt;
+    const noteId = getState().notesReducer.currentNoteId;
+    const request = axios({
+      method: 'delete',
+      url: `${constants.DOMAIN}/api/notes/${noteId}`,
+      headers: authHeader(token),
+    })
+
+    return request.then(
+      response => {
+        dispatch({type: constants.DELETE_NOTE_SUCCESS})
+      },
+      err => {
+        throw err;
+      }
+    )
+  }
+}
+
 
 
 export const matchLocalStorageToState = () => {

@@ -16,7 +16,3 @@ class AddNewButton extends Component {
 }
 
 export default AddNewButton;
-
-
-
-

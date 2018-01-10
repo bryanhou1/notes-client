@@ -15,6 +15,7 @@ export const SUBMIT_NOTE_START = "SUBMIT_NOTE_START";
 export const SUBMIT_NOTE_SUCCESS = "SUBMIT_NOTE_SUCCESS";
 export const SUBMIT_NOTE_FAILURE = "SUBMIT_NOTE_FAILURE";
 export const CREATE_NEW_NOTE_SUCCESS = "CREATE_NEW_NOTE_SUCCESS";
+export const DELETE_NOTE_SUCCESS = "DELETE_NOTE_SUCCESS";
 
 export const DOMAIN = "http://localhost:3000"
 export const SUCCESS = "success";

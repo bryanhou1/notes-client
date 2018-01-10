@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class DeleteButton extends Component {
 
   handleOnClick(e) {
-    debugger;
+    this.props.deleteNote();
   }
 
   render() {
