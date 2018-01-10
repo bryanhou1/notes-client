@@ -3,17 +3,19 @@ import React, {Component} from 'react';
 class SaveStatus extends Component {
 
   displayMessage(){
-    const {isSaving, last_updated} = this.props.currentNote;
+    const {modified, isSaving, last_updated} = this.props.currentNote;
     if (isSaving) {
       return (<span>Saving...</span>)
+    } else if (modified){
+      return (<span>Not Saved. Last saved at {last_updated}</span>)
     } else {
-      return (<span>Last updated at {last_updated}</span>)
+      return (<span>Saved.</span>)
     }
   }
 
   render() {
     return (
-      <span className="statusBarComponent">
+      <span>
         {this.displayMessage()}
       </span>
     )
