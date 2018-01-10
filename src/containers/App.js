@@ -16,11 +16,11 @@ class App extends Component {
   }
   
   render() {
-    const {isLoggedIn, logout} = this.props;
+    const {isLoggedIn, logout, currentUser} = this.props;
     return (
       <Router>
         <div>
-          <NavBar isLoggedIn={isLoggedIn} logout={logout}/>
+          <NavBar isLoggedIn={isLoggedIn} logout={logout} currentUser={currentUser}/>
           <div id="sidebar-and-main-container">
             <Routes />
           </div>
@@ -32,7 +32,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: !!state.currentUser.user.jwt
+    isLoggedIn: !!state.currentUser.user.jwt,
+    currentUser: state.currentUser.user
   };
 };
 
