@@ -16,7 +16,7 @@ class Home extends Component {
         </div>
 
         <div id="main">
-          <StatusAndActionBar currentNote={currentNote} submitNote={submitNote} updateNote={updateNote} deleteNote={deleteNote}/>
+          <StatusAndActionBar currentNote={currentNote} submitNote={submitNote} updateNote={updateNote} deleteNote={deleteNote} notesArr={notesArr} switchCurrentNote={switchCurrentNote}/>
           <NoteContainer currentNote={currentNote} updateNote={updateNote} />
         </div>
       </div>

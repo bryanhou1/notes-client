@@ -28,8 +28,7 @@ export default function notesReducer(state = initialState, action){
           notesArr[mostRecentIndex],
           ...notesArr.slice(0,mostRecentIndex),
           ...notesArr.slice(mostRecentIndex+1)
-        ]
-        debugger
+        ];
         return {...state, notes: {...state.notes, [modifiedNote.id]: modifiedNote}, notesArr: shiftedArr}
       }
     }
