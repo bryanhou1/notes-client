@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import NoteListItem from './NoteListItem';
-
+import AddNewButton from './AddNewButton';
 class NoteList extends Component {
   state = {
     activeId: null
@@ -40,7 +40,7 @@ class NoteList extends Component {
     return (
       <div>
         <ul>
-          <li id="note-list-title">Notes</li>
+          <li id="note-list-title">Notes <AddNewButton/></li>
         </ul>
         {this.arrayToList()}
       </div>

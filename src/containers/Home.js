@@ -8,7 +8,7 @@ import NoteContainer from '../components/NoteContainer';
 
 class Home extends Component {
 	render () {
-    const {notes, switchCurrentNote, currentNote, updateNote, submitNote} = this.props;
+    const {notes, switchCurrentNote, isLoggedIn, currentNote, updateNote, submitNote} = this.props;
 		return (
       <div className="container-fluid">
         <div className="sidenav">
@@ -17,7 +17,7 @@ class Home extends Component {
 
         <div id="main">
           <StatusAndActionBar currentNote={currentNote} submitNote={submitNote} updateNote={updateNote} />
-          <NoteContainer currentNote={currentNote} updateNote={updateNote}/>
+          <NoteContainer currentNote={currentNote} updateNote={updateNote} isLoggedIn={isLoggedIn}/>
         </div>
       </div>
 		)
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => {
   return {
     notes: notes,
     currentNote: notes[currentNoteId],
-
+    isLoggedIn: !!state.currentUser.user.jwt
   }
 }
 
