@@ -10,7 +10,6 @@ class SaveButton extends Component {
 
 disableButtonLogic() {
   const {currentNote} = this.props;
-  debugger;
   return currentNote.isSaving || !currentNote.modified ? "fa fa-floppy-o fa-lg fa-disabled" : "fa fa-floppy-o fa-lg"
 }
   render() {

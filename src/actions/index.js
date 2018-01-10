@@ -1,7 +1,8 @@
 import axios from 'axios';
+import * as constants from '../constants/constants';
 
-const SUCCESS = "success";
-const ERROR = "error";
+
+
 
 //helper
 const authHeader = (token) => {
@@ -14,17 +15,18 @@ export const fetchUser = () => {
     const token = getState().current_user.user.jwt
     const request = axios({
       method: 'get',
-      url: 'http://localhost:3000/api/current_user',
+      url: `${constants.DOMAIN}/api/current_user`,
       headers: authHeader(token),
     })
 
     return request.then(
       response => {
-        dispatch({type: "FETCH_CURRENT_USER_SUCCESS", user: response.data})
+        dispatch({type: constants.FETCH_CURRENT_USER_SUCCESS, user: response.data})
       },
       err => {
         // debugger;
-        // dispatch({type: "FETCH_FAILURE"})
+        // dispatch({type: constants.FETCH_FAILURE})
+        throw err;
       }
     )
   }
@@ -32,9 +34,9 @@ export const fetchUser = () => {
 
 export const login = user_data => {
 	return dispatch => {
-		dispatch({type: "LOGIN_START"})
+		dispatch({type: constants.LOGIN_START})
 
-		const request = axios.post('http://localhost:3000/api/user_token', {"auth": {
+		const request = axios.post(`${constants.DOMAIN}/api/user_token`, {"auth": {
 	    email: user_data.email,
 	    password: user_data.password,
 	  }});
@@ -43,14 +45,14 @@ export const login = user_data => {
 		return request.then(
 			response => {
 				localStorage.setItem('token', response.data.jwt)
-				dispatch({type: "LOGIN_SUCCESS", user: response.data})
-				dispatch({type: "ALERT", messages: {style: SUCCESS, text: ["successfully logged in"]}})
+				dispatch({type: constants.LOGIN_SUCCESS, user: response.data})
+				dispatch({type: constants.ALERT, messages: {style: constants.SUCCESS, text: ["successfully logged in"]}})
 				return response.status;
 			},
 			err => {
-				dispatch({type: "LOGIN_FAILURE"})
+				dispatch({type: constants.LOGIN_FAILURE})
         const message = err.response ? "email or password incorrect" : "network error, please try again later";
-				dispatch({type: "ALERT", messages: {style: ERROR, text: [message]}})
+				dispatch({type: constants.ALERT, messages: {style: constants.ERROR, text: [message]}})
 			},
 		)
 	}
@@ -58,8 +60,8 @@ export const login = user_data => {
 
 export const register = user_data => {
 	return dispatch => {
-		dispatch({type: "REGISTER_START"})
-		const request = axios.post('http://localhost:3000/api/signup', {
+		// dispatch({type: constants.REGISTER_START})
+		const request = axios.post(`${constants.DOMAIN}/api/signup`, {
 	    email: user_data.email,
 	    password: user_data.password,
       name: user_data.name,
@@ -69,14 +71,14 @@ export const register = user_data => {
 
 		return request.then(
 			response => {
-				// dispatch({type: "REGISTER_SUCCESS"})
-				dispatch({type: "ALERT", messages: {style: SUCCESS, text: ["successfully registered"]}});
+				// dispatch({type: constants.REGISTER_SUCCESS})
+				dispatch({type: constants.ALERT, messages: {style: constants.SUCCESS, text: ["successfully registered"]}});
 
 				return response.status;
 			},
 			err => {
-				// dispatch({type: "REGISTER_FAILURE"})
-				dispatch({type: "ALERT", messages: {style: ERROR, text: err.response.data.errors}})
+				// dispatch({type: constants.REGISTER_FAILURE})
+				dispatch({type: constants.ALERT, messages: {style: constants.ERROR, text: err.response.data.errors}})
         return err;
 
 			},
@@ -87,17 +89,17 @@ export const register = user_data => {
 export const logout = () =>  {
     return dispatch => {
     	dispatch({
-        type: "LOGOUT",
+        type: constants.LOGOUT,
     	})
       localStorage.removeItem("token");
-    	dispatch({type: "ALERT", messages: {style: SUCCESS, text: ["successfully logged out"]}})
+    	dispatch({type: constants.ALERT, messages: {style: constants.SUCCESS, text: ["successfully logged out"]}})
     }
 }
 
 export const removeMessage = () => {
   return dispatch => {
     dispatch({
-      type: "CLEAR_ALERT"
+      type: constants.CLEAR_ALERT
     })
   }
 }
@@ -108,17 +110,16 @@ export const fetchNotes = () => {
     const token = getState().current_user.user.jwt
     const request = axios({
       method: 'get',
-      url: 'http://localhost:3000/api/notes',
+      url: `${constants.DOMAIN}/api/notes`,
       headers: authHeader(token),
     })
     return request.then(
       response => {
-        debugger;
-        dispatch({type: "FETCH_NOTES_SUCCESS", notes: response.data})
+        dispatch({type: constants.FETCH_NOTES_SUCCESS, notes: response.data})
       },
       err => {
         // debugger;
-        // dispatch({type: "FETCH_FAILURE"})
+        // dispatch({type: constants.FETCH_FAILURE})
       }
     )
   }
@@ -126,13 +127,13 @@ export const fetchNotes = () => {
 
 export const switchCurrentNote = currentNoteId => {
   return dispatch => {
-    dispatch({type: "DEFINE_CURRENT_NOTE", currentNoteId})
+    dispatch({type: constants.DEFINE_CURRENT_NOTE, currentNoteId})
   }
 }
 
 export const updateNote = (currentNote, attr, value) => {
   return dispatch => {
-    dispatch({type: "UPDATE_NOTE", currentNote, attr, value})
+    dispatch({type: constants.UPDATE_NOTE, currentNote, attr, value})
   }
 }
 
@@ -147,23 +148,19 @@ export const submitNote = () => {
     const {title, text, starred} = currentNote;
     const request = axios({
       method: 'patch',
-      url: `http://localhost:3000/api/notes/${currentNoteId}`,
+      url: `${constants.DOMAIN}/api/notes/${currentNoteId}`,
       data: {title: title, text: text, starred: starred},
       headers: authHeader(token),
     })
 
-    dispatch({type: "SUBMIT_NOTE_START", id: currentNoteId});
-    // dispatch to display "saving..." and have attr "isSaving: true, Modified: false"
-
+    dispatch({type: constants.SUBMIT_NOTE_START, id: currentNoteId});
     return request.then(
       response => {
-          // dispatch isSaving === false, last saved, response.data
-          dispatch({type: "SUBMIT_NOTE_SUCCESS", id: currentNoteId, last_updated: response.data})
+        dispatch({type: constants.SUBMIT_NOTE_SUCCESS, id: currentNoteId, last_updated: response.data})
       },
       err => {
-        //make isSaving === false, modified=== true
-        dispatch({type: "SUBMIT_NOTE_FAILURE", id: currentNoteId})
-        return err;
+        dispatch({type: constants.SUBMIT_NOTE_FAILURE, id: currentNoteId})
+        throw err;
       }
     )
   }
@@ -171,7 +168,7 @@ export const submitNote = () => {
 
 export const matchLocalStorageToState = () => {
   return dispatch => {
-    dispatch({ type: "MATCH_LOCAL_STORAGE_TO_STATE"});
+    dispatch({ type: constants.MATCH_LOCAL_STORAGE_TO_STATE});
   }
 }
 

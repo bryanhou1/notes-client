@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class SaveStatus extends Component {
 
   displayMessage(){
-    debugger;
     const {isSaving, last_updated} = this.props.currentNote;
     if (isSaving) {
       return (<span>Saving...</span>)
