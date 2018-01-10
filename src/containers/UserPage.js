@@ -5,9 +5,9 @@ class UserPage extends Component {
   render() {
     const {currentUser} = this.props;
     return (
-      <div class="container">
-        <div class="row">
-          <div class="col col-md-6 col-md-offset-3">
+      <div className="container">
+        <div className="row">
+          <div className="col col-md-6 col-md-offset-3">
             <h4> User Details </h4>
             <dl>
               <dt>Name:</dt>
